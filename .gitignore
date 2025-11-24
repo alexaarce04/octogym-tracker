@@ -1,0 +1,10 @@
+# Python virtual environment
+backend/venv/
+**/__pycache__/
+
+# Node modules
+frontend/node_modules/
+frontend/dist/
+
+# OS files
+.DS_Store
