@@ -1,4 +1,3 @@
-
 .app {
   min-height: 100vh;
   padding: 2.5rem 1.5rem;
@@ -6,23 +5,32 @@
   color: #f9fafb;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-
 header,
-.grid {
+main {
   width: 100%;
   max-width: 1100px;
 }
 
-
-
 header {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 h1 {
@@ -35,13 +43,15 @@ h1 {
   max-width: 32rem;
 }
 
-
+/* GRID LAYOUT */
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 1.75rem;
 }
+
+/* CARDS */
 
 .card {
   background: rgba(15, 23, 42, 0.96);
@@ -56,14 +66,144 @@ h1 {
   font-size: 1.3rem;
 }
 
+/* AUTH LAYOUT */
 
+.auth-layout {
+  display: flex;
+  gap: 2rem;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.auth-hero {
+  flex: 1 1 260px;
+  min-width: 0;
+  padding: 1.75rem;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.18), transparent 55%);
+}
+
+.auth-hero h2 {
+  font-size: 1.8rem;
+  margin: 0 0 0.6rem 0;
+}
+
+.auth-hero p {
+  margin: 0 0 0.8rem 0;
+  color: #e5e7eb;
+  font-size: 0.95rem;
+}
+
+.auth-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.22rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid rgba(56, 189, 248, 0.6);
+  color: #a5f3fc;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.6rem;
+  background: rgba(15, 23, 42, 0.9);
+}
+
+.auth-features {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 0.8rem 0;
+  font-size: 0.9rem;
+  color: #d1d5db;
+}
+
+.auth-features li {
+  margin-bottom: 0.3rem;
+}
+
+.auth-note {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin: 0.5rem 0 0 0;
+}
+
+.auth-card {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+.auth-hint {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin-top: -0.2rem;
+}
+
+/* DASHBOARD */
+
+.dashboard-card {
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.dashboard-subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+.dashboard-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.dashboard-stat {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 0.9rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.dashboard-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9ca3af;
+  margin-bottom: 0.25rem;
+}
+
+.dashboard-value {
+  font-size: 1.3rem;
+}
+
+.dashboard-muted {
+  display: block;
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin-top: 0.15rem;
+}
+
+.dashboard-goal-bar {
+  margin-top: 0.5rem;
+}
+
+/* FORM */
 
 .form {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
-
 
 .form label {
   display: flex;
@@ -95,7 +235,7 @@ h1 {
   margin-top: 0.75rem;
 }
 
-
+/* BUTTONS */
 
 button {
   border: none;
@@ -140,7 +280,11 @@ button.small {
   font-size: 0.8rem;
 }
 
+.theme-toggle {
+  font-size: 0.8rem;
+}
 
+/* templates */
 
 .templates {
   margin-top: 1rem;
@@ -167,7 +311,7 @@ button.small {
   font-size: 0.8rem;
 }
 
-
+/* workout list */
 
 .workout-list {
   list-style: none;
@@ -203,7 +347,7 @@ button.small {
   gap: 0.25rem;
 }
 
-
+/* stats & goal */
 
 .stats p {
   margin: 0.2rem 0;
@@ -230,7 +374,7 @@ button.small {
   transition: width 0.2s ease-out;
 }
 
-
+/* errors */
 
 .error {
   padding: 0.4rem 0.6rem;
@@ -240,4 +384,136 @@ button.small {
   color: #fecaca;
   font-size: 0.8rem;
   margin-bottom: 0.6rem;
+}
+
+/* user info */
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+}
+
+.user-email {
+  color: #9ca3af;
+  margin: 0;
+}
+
+/* charts */
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.chart-block h3 {
+  margin-bottom: 0.2rem;
+  font-size: 1rem;
+}
+
+.chart-caption {
+  margin: 0 0 0.6rem 0;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.chart-empty {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin-top: 1rem;
+}
+
+/* ---------- LIGHT THEME OVERRIDES ---------- */
+
+.app.light {
+  background: radial-gradient(circle at top, #e5e7eb 0, #f3f4f6 50%, #ffffff 100%);
+  color: #020617;
+}
+
+.app.light .card {
+  background: #ffffff;
+  color: #020617;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.15);
+}
+
+.app.light .subtitle {
+  color: #4b5563;
+}
+
+.app.light .auth-hero {
+  border-color: rgba(148, 163, 184, 0.7);
+  background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.08), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.08), transparent 55%);
+}
+
+.app.light .auth-hero p {
+  color: #374151;
+}
+
+.app.light .auth-features {
+  color: #4b5563;
+}
+
+.app.light .auth-note {
+  color: #6b7280;
+}
+
+.app.light .dashboard-stat {
+  background: #f9fafb;
+  border-color: rgba(148, 163, 184, 0.5);
+}
+
+.app.light .dashboard-subtitle {
+  color: #6b7280;
+}
+
+.app.light .dashboard-label,
+.app.light .dashboard-muted {
+  color: #6b7280;
+}
+
+.app.light .form input {
+  background: #f9fafb;
+  color: #020617;
+  border-color: #d1d5db;
+}
+
+.app.light .form input:focus {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 1px #0ea5e955;
+}
+
+.app.light .templates-label,
+.app.light .meta,
+.app.light .chart-caption,
+.app.light .chart-empty {
+  color: #6b7280;
+}
+
+.app.light .goal-bar {
+  background: #e5e7eb;
+  border-color: #d1d5db;
+}
+
+.app.light .goal-bar-fill {
+  background: linear-gradient(90deg, #22c55e, #0ea5e9);
+}
+
+.app.light .error {
+  background: rgba(220, 38, 38, 0.05);
+  border-color: #ef4444;
+  color: #b91c1c;
+}
+
+.app.light .workout-item {
+  border-bottom: 1px solid rgba(209, 213, 219, 0.9);
+}
+
+.app.light .user-email {
+  color: #4b5563;
 }
