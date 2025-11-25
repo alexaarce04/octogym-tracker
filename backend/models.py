@@ -1,4 +1,3 @@
-# backend/models.py
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 
@@ -21,7 +20,6 @@ class Workout(Base):
     type = Column(String, index=True)
     duration_minutes = Column(Integer)
     intensity = Column(String)
-    # store dates as ISO strings like "2025-11-25"
     date = Column(String, index=True)
 
     user_id = Column(Integer, ForeignKey("users.id"))
