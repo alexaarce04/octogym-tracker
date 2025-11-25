@@ -12,8 +12,6 @@ import models
 import schemas
 from database import SessionLocal, engine
 
-# ---------- FASTAPI APP & CORS ----------
-
 app = FastAPI()
 
 origins = [
@@ -28,7 +26,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ---------- DATABASE INIT ----------
+# DB
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -40,11 +38,11 @@ def get_db():
     finally:
         db.close()
 
-# ---------- AUTH / SECURITY SETUP ----------
+# auth & security setup
 
-SECRET_KEY = "super-secret-octogym-key-change-me"  # For demo only
+SECRET_KEY = "super-secret-octogym-key-change-me"  
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24  # 1 day
+ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
@@ -103,14 +101,11 @@ async def get_current_user(
     return user
 
 
-# ---------- ROUTES: HEALTH ----------
+# routes
 
 @app.get("/health")
 def health_check():
     return {"status": "ok"}
-
-
-# ---------- ROUTES: AUTH ----------
 
 @app.post("/auth/register", response_model=schemas.User, status_code=201)
 def register_user(user_in: schemas.UserCreate, db: Session = Depends(get_db)):
@@ -124,14 +119,13 @@ def register_user(user_in: schemas.UserCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(db_user)
     return db_user
-
-
+    
 @app.post("/auth/login", response_model=schemas.Token)
 def login_for_access_token(
     form_data: OAuth2PasswordRequestForm = Depends(),
     db: Session = Depends(get_db),
 ):
-    # OAuth2PasswordRequestForm uses `username` field for the identifier
+    # uses username field for the identifier
     user = authenticate_user(db, email=form_data.username, password=form_data.password)
     if not user:
         raise HTTPException(
@@ -148,7 +142,7 @@ def login_for_access_token_json(
     body: schemas.LoginRequest,
     db: Session = Depends(get_db),
 ):
-    # same logic as form-based login, but using JSON
+
     user = authenticate_user(db, email=body.email, password=body.password)
     if not user:
         raise HTTPException(
@@ -159,9 +153,6 @@ def login_for_access_token_json(
 
     access_token = create_access_token(data={"sub": user.email})
     return {"access_token": access_token, "token_type": "bearer"}
-
-
-# ---------- ROUTES: WORKOUTS (PROTECTED) ----------
 
 @app.get("/workouts", response_model=List[schemas.Workout])
 def get_workouts(
