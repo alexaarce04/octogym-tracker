@@ -1,87 +1,243 @@
+
 .app {
   min-height: 100vh;
-  padding: 2rem;
-  background: #050816;
+  padding: 2.5rem 1.5rem;
+  background: radial-gradient(circle at top, #0f172a 0, #020617 50%, #000 100%);
   color: #f9fafb;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+header,
+.grid {
+  width: 100%;
+  max-width: 1100px;
+}
+
+
+
+header {
+  margin-bottom: 2rem;
 }
 
 h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.25rem;
+  font-size: 2.7rem;
+  margin-bottom: 0.3rem;
 }
 
 .subtitle {
   color: #9ca3af;
-  margin-bottom: 2rem;
+  max-width: 32rem;
 }
+
+
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.75rem;
 }
 
 .card {
-  background: #0f172a;
-  padding: 1.5rem;
-  border-radius: 1rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  border: 1px solid #1f2937;
+  background: rgba(15, 23, 42, 0.96);
+  padding: 1.75rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.15);
 }
 
 .card h2 {
   margin-bottom: 1rem;
+  font-size: 1.3rem;
 }
 
-label {
-  display: block;
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
   font-size: 0.9rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.25rem;
 }
 
-input {
+.form input {
   width: 100%;
-  margin-top: 0.25rem;
   padding: 0.5rem 0.75rem;
-  border-radius: 0.5rem;
-  border: 1px solid #374151;
+  border-radius: 0.6rem;
+  border: 1px solid #1f2937;
   background: #020617;
   color: #f9fafb;
+  font-size: 0.9rem;
 }
 
-input:focus {
+.form input:focus {
   outline: none;
   border-color: #22d3ee;
   box-shadow: 0 0 0 1px #22d3ee55;
 }
 
-button {
+.button-row {
+  display: flex;
+  gap: 0.5rem;
   margin-top: 0.75rem;
-  width: 100%;
-  padding: 0.6rem 0.75rem;
-  border-radius: 0.75rem;
+}
+
+
+
+button {
   border: none;
-  background: #22d3ee;
+  border-radius: 0.75rem;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
+  transition: transform 0.05s ease, box-shadow 0.1s ease, filter 0.1s ease;
 }
 
 button:hover {
-  filter: brightness(1.1);
+  filter: brightness(1.05);
+  transform: translateY(-1px);
 }
+
+button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+button[type="submit"],
+button:not(.secondary):not(.danger):not(.small):not(.chip) {
+  background: linear-gradient(135deg, #06b6d4, #22c55e);
+  color: #020617;
+  box-shadow: 0 12px 30px rgba(34, 211, 238, 0.35);
+}
+
+button.secondary {
+  background: #020617;
+  color: #e5e7eb;
+  border: 1px solid #374151;
+}
+
+button.danger {
+  background: #b91c1c;
+  color: #fee2e2;
+}
+
+button.small {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+
+
+.templates {
+  margin-top: 1rem;
+}
+
+.templates-label {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin-bottom: 0.4rem;
+}
+
+.templates-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.chip {
+  background: #0f172a;
+  color: #e5e7eb;
+  border: 1px solid #1f2937;
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+
 
 .workout-list {
   list-style: none;
   padding-left: 0;
-  margin-bottom: 1rem;
+  margin: 0 0 1rem 0;
+  max-height: 260px;
+  overflow-y: auto;
 }
 
-.workout-list li {
-  padding: 0.4rem 0;
-  border-bottom: 1px solid #1f2937;
+.workout-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(31, 41, 55, 0.7);
 }
+
+.workout-item:last-child {
+  border-bottom: none;
+}
+
+.meta {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-top: 0.2rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.item-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+
 
 .stats p {
   margin: 0.2rem 0;
+  font-size: 0.9rem;
+}
+
+.goal {
+  margin-top: 0.8rem;
+}
+
+.goal-bar {
+  margin-top: 0.35rem;
+  width: 100%;
+  height: 0.6rem;
+  background: #020617;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid #111827;
+}
+
+.goal-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e, #22d3ee);
+  transition: width 0.2s ease-out;
+}
+
+
+
+.error {
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.5rem;
+  background: rgba(127, 29, 29, 0.2);
+  border: 1px solid #b91c1c;
+  color: #fecaca;
+  font-size: 0.8rem;
+  margin-bottom: 0.6rem;
 }

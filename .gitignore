@@ -1,6 +1,10 @@
 # Python virtual environment
 backend/venv/
 **/__pycache__/
+*.pyc
+
+# Database file (local only)
+backend/octogym.db
 
 # Node modules
 frontend/node_modules/
