@@ -23,8 +23,6 @@ const TEMPLATES = [
   { label: "Yoga 20 min (Low)", type: "Yoga", duration_minutes: 20, intensity: "Low" },
 ];
 
-// ---------- HELPERS FOR CHART DATA ----------
-
 const getLast7DaysSummary = (workouts) => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -34,7 +32,7 @@ const getLast7DaysSummary = (workouts) => {
     const d = new Date(today);
     d.setDate(today.getDate() - i);
     const iso = d.toISOString().slice(0, 10);
-    const label = d.toLocaleDateString(undefined, { weekday: "short" }); // Mon, Tue, ...
+    const label = d.toLocaleDateString(undefined, { weekday: "short" }); 
 
     const minutes = workouts
       .filter((w) => w.date === iso)
@@ -64,7 +62,6 @@ const getIntensityData = (workouts) => {
 const PIE_COLORS = ["#22c55e", "#06b6d4", "#f97316", "#e11d48"];
 
 function App() {
-  // ---------- THEME STATE ----------
   const [theme, setTheme] = useState(
     () => localStorage.getItem("octogym_theme") || "dark"
   );
@@ -77,18 +74,16 @@ function App() {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
-  // ---------- AUTH STATE ----------
   const [token, setToken] = useState(() => localStorage.getItem("octogym_token") || "");
   const [userEmail, setUserEmail] = useState(() => localStorage.getItem("octogym_email") || "");
 
   const [authForm, setAuthForm] = useState({
     email: "",
     password: "",
-    mode: "login", // "login" | "register"
+    mode: "login", 
   });
   const [authError, setAuthError] = useState("");
 
-  // ---------- WORKOUT STATE ----------
   const [workouts, setWorkouts] = useState([]);
   const [form, setForm] = useState({
     type: "",
@@ -100,7 +95,6 @@ function App() {
   const [editingId, setEditingId] = useState(null);
   const [error, setError] = useState("");
 
-  // ---------- LOAD WORKOUTS WHEN TOKEN CHANGES ----------
   useEffect(() => {
     if (!token) {
       setWorkouts([]);
@@ -118,7 +112,6 @@ function App() {
         });
 
         if (res.status === 401) {
-          // token invalid/expired
           handleLogout();
           setError("Session expired. Please log in again.");
           return;
@@ -135,10 +128,7 @@ function App() {
     };
 
     fetchWorkouts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
-
-  // ---------- AUTH HELPERS ----------
 
   const handleAuthChange = (e) => {
     const { name, value } = e.target;
@@ -222,8 +212,6 @@ function App() {
       setAuthError(err.message || "Authentication error.");
     }
   };
-
-  // ---------- WORKOUT FORM HANDLERS ----------
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -349,7 +337,6 @@ function App() {
     }
   };
 
-  // ---------- STATS ----------
   const totalMinutes = workouts.reduce((sum, w) => sum + (w.duration_minutes || 0), 0);
   const averageDuration = workouts.length ? Math.round(totalMinutes / workouts.length) : 0;
 
@@ -360,11 +347,9 @@ function App() {
 
   const goalProgress = Math.min(100, Math.round((todaysMinutes / DAILY_GOAL_MINUTES) * 100));
 
-  // chart data
   const weeklyData = getLast7DaysSummary(workouts);
   const intensityData = getIntensityData(workouts);
 
-  // dashboard extras
   const weeklyTotalMinutes = weeklyData.reduce((sum, d) => sum + d.minutes, 0);
   const activeDaysThisWeek = weeklyData.filter((d) => d.minutes > 0).length;
 
@@ -376,8 +361,6 @@ function App() {
     }
     return s;
   })();
-
-  // ---------- RENDER ----------
 
   return (
     <div className={`app ${theme === "light" ? "light" : "dark"}`}>
