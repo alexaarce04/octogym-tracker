@@ -1,8 +1,7 @@
-# backend/schemas.py
 from pydantic import BaseModel, EmailStr
 from typing import Optional, List
 
-# ---------- WORKOUT SCHEMAS ----------
+#  workout schema
 
 class WorkoutBase(BaseModel):
     type: str
@@ -15,7 +14,7 @@ class WorkoutCreate(BaseModel):
     type: str
     duration_minutes: int
     intensity: str
-    # optional; backend will fill in today if missing
+    # backend will fill in today if missing
     date: Optional[str] = None
 
 
@@ -34,7 +33,7 @@ class Workout(WorkoutBase):
         orm_mode = True
 
 
-# ---------- USER SCHEMAS ----------
+# user schema
 
 class UserBase(BaseModel):
     email: EmailStr
@@ -52,7 +51,7 @@ class User(UserBase):
         orm_mode = True
 
 
-# ---------- AUTH SCHEMAS ----------
+# auth schema
 
 class Token(BaseModel):
     access_token: str
